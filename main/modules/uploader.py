@@ -35,7 +35,7 @@ from pyrogram.errors import FloodWait
 
 from main.inline import button1
 
-async def upload_video(msg: Message,file,id,tit,name,ttl,sourcetext,untext,subtitle,nyaasize):
+async def upload_video(msg: Message,file,id,tit,name,ttl,sourcetext,untext):
 
     try:
 
@@ -62,7 +62,7 @@ async def upload_video(msg: Message,file,id,tit,name,ttl,sourcetext,untext,subti
             fukpath = "downloads/" + filed
             caption = f"{filed}"
             caption = caption.replace("[720p x265] @animxt.mkv", "") 
-            gcaption=f"**{caption}**" + "\n" +  f"__({tit})__" + "\n" + "━━━━━━━━━━━━━━━━━━━" + "\n" + "✓  `720p x265 10Bit`" + "\n" + f"✓  `{subtitle} ~ Subs`" + "\n" + "#Encoded #HEVC"
+            gcaption=f"**{caption}**" + "\n" +  f"__({tit})__" + "\n" + "━━━━━━━━━━━━━━━━━━━" + "\n" + "✓  `720p x265 10Bit`" + "\n" + f"✓  `العربية (Saudi Arabia), Deutsch (Germany), English (US), Español (Latin America), Español (España), Français (France), हिंदी (India), Italian (Italy), Português (Brasil), Русский (Russia) ~ Subs`" + "\n" + "#Encoded #HEVC"
             kayo_id = -1001642923224
             gay_id = 1159872623
             x = await app.send_document(

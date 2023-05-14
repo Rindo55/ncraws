@@ -10,32 +10,28 @@ from main.inline import button1
 
 def trim_title(title: str):
     title = title.rsplit(' ', 1)[0]
-    title = title.replace("[Erai-raws] ", "")
+    title = title.replace("【推しの子】 鬼滅之刃 刀匠村篇 / ", "")
     title = title.replace("Dr. Stone - New World", "Dr Stone New World")
     title = title.replace("Opus.COLORs", "Opus COLORs")
     title = title.replace("Ousama Ranking - Yuuki no Takarabako", "Ousama Ranking Yuuki no Takarabako")
     title = title.replace(" Isekai wa Smartphone to Tomo ni. 2", " Isekai wa Smartphone to Tomo ni 2")
-    title = title.replace("Kimetsu no Yaiba - Katanakaji no Sato Hen", "Demon Slayer Kimetsu No Yaiba To the Swordsmith Village")
+    title = title.replace("Kimetsu no Yaiba: Katanakaji no Sato-hen - 06 (CR 1920x1080 AVC AAC MKV)", "Demon Slayer Kimetsu No Yaiba To the Swordsmith Village - 06")
     ext = ".mkv"
     title = title + ext
     return title
-
-def multi_sub(title: str):
-    subtitle = title.split()[-1] 
-    return subtitle
-
+def trim_link(link: str):
+    link = link.replace("https://ouo.si/download/", "")
+    return link
 def parse():
-    a = feedparser.parse("https://siftrss.com/f/oyebWJBqN8")
+    a = feedparser.parse("https://ouo.si/feed?q=kimetsu")
     b = a["entries"]
     b = b[0:1]
     data = []    
 
     for i in b:
         item = {}
-        item['title'] = trim_title(i['title'])
-        item['subtitle'] = multi_sub(i['title'])
-        item['size'] = i['nyaa_size']   
-        item['link'] = "magnet:?xt=urn:btih:" + i['nyaa_infohash']
+        item['title'] = trim_title(i['title'])  
+        item['link'] = "magnet:?xt=urn:btih:" + trim_link(i['link'])
         data.append(item)
     data.reverse()
     return data
